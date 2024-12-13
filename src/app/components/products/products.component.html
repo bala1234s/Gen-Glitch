@@ -1,0 +1,27 @@
+
+<div class="main-products">
+  <div>
+    <app-navbar></app-navbar>
+  </div>
+  <div class="heading">
+    <h1>Product Varieties</h1>
+  </div>
+  <div class="products-display">
+    <div class="product" *ngFor="let item of products; let i = index">
+      <div>
+        <img [src]="item.img" alt="Image of {{ item.cakename }}">
+      </div>
+      <div class="product-padding">
+        <h3>{{ item.cakename }}</h3>
+        <div class="ratings">
+          <img *ngFor="let rating of ratingsshown(item.ratings)" src="../../assets/star.png" alt="Star Rating">
+        </div>
+        <p class="price">{{ item.price | currency: 'INR':'symbol':'1.0-0' }}</p>
+        <button class="btn" (click)="productName(i, item)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-footer></app-footer>
+  </div>
+</div>

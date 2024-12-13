@@ -1,0 +1,88 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<div>
+  <div>
+    <app-navbar></app-navbar>
+  </div>
+  <div class="product-cart">
+    <div class="cart-heading">
+      <h1>Add to Cart</h1>
+    </div>
+    <div class="address-main">
+      <div class="cart-main">
+        <div class="cart" *ngFor="let item of products; let i = index; ">
+          <div class="details">
+            <div>
+              <img [src]="item.productimg" alt="Product Image">
+            </div>
+            <div class="headings">
+              <div>
+                <h1>{{ item.productname }}</h1>
+              </div>
+              <div>
+                <h1>{{ item.price | currency: 'INR':'symbol':'1.0-0' }}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="quantity">
+            <div>
+              <h1>Quantity</h1>
+            </div>
+            <div>
+              <form>
+                <small>1</small>
+                <i class="fa-solid fa-trash" id="trash" (click)="deletebook(i, item.productname)"></i>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="add-address">
+        <div>
+          <h1>Delivery Address</h1>
+        </div>
+        <div class="show-input">
+           <form [formGroup]="addressForm" (ngSubmit)="bookNow()">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name">
+        <small *ngIf="f.name.invalid && f.name.touched">Name is required and should contain only letters.</small>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email">
+        <small *ngIf="f.email.invalid && f.email.touched">Enter a valid email.</small>
+
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" formControlName="phone">
+        <small *ngIf="f.phone.invalid && f.phone.touched">Enter a valid 10-digit phone number.</small>
+
+        <label for="address">Address</label>
+        <input type="text" id="address" formControlName="address">
+        <small *ngIf="f.address.invalid && f.address.touched">Address is required.</small>
+
+        <label for="city">City</label>
+        <input type="text" id="city" formControlName="city">
+        <small *ngIf="f.city.invalid && f.city.touched">City is required.</small>
+
+        <label for="state">State</label>
+        <input type="text" id="state" formControlName="state">
+        <small *ngIf="f.state.invalid && f.state.touched">State is required.</small>
+
+        <label for="pincode">Pincode</label>
+        <input type="text" id="pincode" formControlName="pincode">
+        <small *ngIf="f.pincode.invalid && f.pincode.touched">Enter a valid 6-digit pincode.</small>
+
+        <div class="payment-btn" *ngIf="products.length > 0">
+          <button type="submit">Book Now</button>
+        </div>
+      </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-footer></app-footer>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div>
+  <header class="header">
+    <div class="companylogo">
+      <a [routerLink]="['/']">
+        <img src="../../assets/logo.png" alt="">
+      </a>
+    </div>
+    <div class="navlinks">
+      <nav>
+        <a [routerLink]="routeshow" routerLinkActive="activeroute">Products</a>
+        <a routerLink="/contact" routerLinkActive="activeroute">Contact</a>
+        <a routerLink="/about" routerLinkActive="activeroute">About</a>
+      </nav>
+      <div class="btn-icon">
+        <ng-container *ngIf="showcart; else addToCart">
+          <a routerLink="/login">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
+        </ng-container>
+        <ng-template #addToCart>
+          <a routerLink="/addtocart">
+            <i class="fa-solid fa-cart-plus" id="redicon"></i>
+          </a>
+        </ng-template>
+
+        <ng-container *ngIf="provideacess; else loggedIn">
+          <a routerLink="/login">
+            <button>Login</button>
+          </a>
+        </ng-container>
+        <ng-template #loggedIn>
+          <button (click)="logOut()">Logout</button>
+          <h3 id="username">
+            <i class="fa-solid fa-user"></i>&nbsp;{{ parsedDetails.username }}
+          </h3>
+        </ng-template>
+      </div>
+    </div>
+  </header>
+</div>

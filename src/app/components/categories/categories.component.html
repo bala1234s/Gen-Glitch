@@ -1,0 +1,23 @@
+<div class="main-products">
+  <div>
+    <app-navbar></app-navbar>
+  </div>
+  <div class="heading">
+    <h1>Categories</h1>
+  </div>
+  <div class="products-display">
+    <div class="product" *ngFor="let item of products; let i = index;">
+      <div>
+        <img [src]="item.categoryimg" alt="Category Image">
+      </div>
+      <div class="product-padding">
+        <h3>{{ item.catname }}</h3>
+        <p class="description">{{ item.description }}</p>
+        <button class="button" (click)="productname(item.catname)">Explore</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-footer></app-footer>
+  </div>
+</div>

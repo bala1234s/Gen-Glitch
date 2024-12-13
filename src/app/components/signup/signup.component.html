@@ -1,0 +1,74 @@
+<body>
+    
+    
+    <div class="main-container">
+        <div class="logo-website">
+            <a routerLink="/"><img src="../../assets/logo.png" alt="Shop Logo"></a>
+        </div>
+        <div class="loginpage">
+            <div class="login-arrange">
+                
+                <form [formGroup]="registervalidate" (ngSubmit)="registervalidate.valid && userRegister()">
+                    <div class="heading">
+                        <h1>Register</h1>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Enter Username" formControlName="username">
+                        <div *ngIf="registervalidate.controls['username'].errors?.['required'] && registervalidate.controls['username'].dirty">
+                            <small>Username is required</small>
+                        </div>
+                        <div *ngIf="registervalidate.controls['username'].errors?.['pattern']">
+                            <small>Username is not valid</small>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Enter Email ID" formControlName="email">
+                        <div *ngIf="registervalidate.controls['email'].errors?.['required'] && registervalidate.controls['email'].dirty">
+                            <small>Email ID is required</small>
+                        </div>
+                        <div *ngIf="registervalidate.controls['email'].errors?.['pattern']">
+                            <small>Enter a valid Email ID</small>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <input
+                            type="password"
+                            placeholder="Enter password"
+                            formControlName="password"
+                            [type]="field ? 'password' : 'text'"
+                        >
+                        <div class="pass-icon">
+                            <i class="fa-solid" [ngClass]="{'fa-eye-slash': field, 'fa-eye': !field}" (click)="changeicon()"></i>
+                        </div>
+                        <div *ngIf="registervalidate.controls['password'].errors?.['required'] && registervalidate.controls['password'].dirty">
+                            <small>Password is required</small>
+                        </div>
+                        <div *ngIf="registervalidate.controls['password'].errors?.['pattern']">
+                            <small>Password should contain at least 8 characters</small>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            formControlName="confirmpassword"
+                            [type]="field2 ? 'password' : 'text'"
+                        >
+                        <div class="pass-icon">
+                            <i class="fa-solid" [ngClass]="{'fa-eye-slash': field2, 'fa-eye': !field2}" (click)="changeiconconfirm()"></i>
+                        </div>
+                        <div *ngIf="registervalidate.controls['confirmpassword'].errors?.['required'] && registervalidate.controls['confirmpassword'].dirty">
+                            <small>Confirm Password is required</small>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button type="submit">Register</button>
+                    </div>
+                    <div class="signup-nav">
+                        <p>Already have an account? <a routerLink="/login">Sign in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
